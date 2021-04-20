@@ -1,18 +1,26 @@
-.timeline{
-  display: grid;
-  grid-template-columns: repeat(8, 3rem);
-}
-
 h1{
   grid-column: 1 / -1;
 }
-
-.temp{
-  display: flex;
-  align-items: center;
-}
-
 .sub{
-  border-left: thin orange solid;
+  border-left: 2px orange solid;
   padding: .7rem;
+  text-align: left;
 }
+.timeline{
+  display: grid;
+  grid-template-columns: repeat(8, auto);
+  gap: 2px;
+}
+@media screen and (max-width:992px) {
+  .timeline{
+    font-size: .9rem;
+  }
+}
+
+@media screen and (max-width:370px) {
+  .timeline{
+    display: none;
+  }
+}
+
+

@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { map, share, switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +30,8 @@ export class ForecastService {
       }),
       switchMap((values)=>{
         return this.http.get('https://api.openweathermap.org/data/2.5/forecast', { params: values })
-      })
+      }),
+      share()
     )
   }
 }

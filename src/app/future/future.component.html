@@ -1,9 +1,12 @@
+<h3>5-day Forecast</h3>
 <div class="primary" *ngIf="primaryDisplay">
-  <h3>5-day Forecast</h3>
   <ul *ngFor="let forecast of weatherData; let i = index">
     <li class="main" (click)="toggle(weatherData[i], i)">
-      {{ forecast.dt_txt | date:'EEE, MMM dd' }}
-      <img src="assets/images/{{ forecast.weather[0].icon }}.png" alt="icon" class="icon">
+      <span>
+        <span class="day-of-week">{{ forecast.dt_txt | date:'EEE' }}</span>
+        <span class="date">{{ forecast.dt_txt | date:', MMM dd' }}</span>
+      </span>
+      <img src="assets/images/{{ forecast.weather[0].icon }}.png" alt="icon" class="main_icon">
       <span>
         {{ forecast.main.temp_min | number:'1.0-0' }}°F /
         {{ forecast.main.temp_max | number:'1.0-0' }}°F
@@ -15,14 +18,19 @@
 </div>
 
 <div *ngIf="secondaryDisplay">
-  <h3>5-day Forecast</h3>
   <ul class="sub">
     <li *ngFor="let forecast of weatherData; let i = index" [ngClass]="{'selected': selectedIndex == i}">
       <span (click)="showDeatails(weatherData[i], i)">{{ forecast.dt_txt | date:'EEE' }}</span>
     </li>
     <i class="fa fa-caret-up" aria-hidden="true" (click)="toggle()"></i>
   </ul>
-  <div>
-    {{ forecastDetails.main.temp | number:'1.0-0' }}°F
+  <div class="sub_details">
+    <div class="sub_info">
+      <img src="assets/images/{{ forecastDetails.weather[0].icon }}.png" alt="icon" class="sub_icon">
+      <h5>{{ forecastDetails.weather[0].main }}. {{ forecastDetails.weather[0].description }}</h5>
+      <p>The high will be {{ forecastDetails.main.temp_max | number:'1.0-0' }}°F,
+        the low will be {{ forecastDetails.main.temp_min | number:'1.0-0' }}°F
+      </p>
+    </div>
   </div>
 </div>

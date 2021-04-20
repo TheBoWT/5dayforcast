@@ -1,17 +1,89 @@
+h3{
+  text-align: center;
+}
 .main{
   display: grid;
   grid-template-columns: repeat(5, 6rem);
 }
-.sub{
-  display: flex;
-  justify-content: space-between;
-  list-style: none;
-}
-.icon{
+.main_icon{
   height: 2rem;
   padding-left: 2rem;
+}
+
+@media screen and (max-width:900px){
+  .date{
+    display: none;
+  }
+  .main{
+    grid-template-columns: auto auto 6rem auto auto;
+  }
+}
+
+@media screen and (max-width:768px){
+  .main{
+    grid-template-columns: repeat(5, 6rem);
+  }
+  .date{
+    display: inline;
+  }
+}
+@media screen and (max-width:485px){
+  .date{
+    display: none;
+  }
+  .main{
+    grid-template-columns: repeat(5, auto);
+  } 
+}
+
+.sub{
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+}
+
+.sub_details{
+  padding: 0 1rem;
+}
+.sub_info{
+  display: grid;
+  grid-template-columns: minmax(min-content, 2rem) auto;
+  grid-template-rows: repeat(2, 1fr);
+  align-items: center;
+}
+.sub_icon{
+  grid-row: 1/ 3;
+  padding: 0;
+  height: 5rem;
+}
+
+@media screen and (max-width:992px) {
+  .sub_info{
+    font-size: .7rem;
+  }
+  .sub_icon{
+    height: 3rem;
+  }
+}
+@media screen and (max-width:767px) {
+  .sub_info{
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width:410px){
+  .sub_icon{
+    padding: 0;
+    height: 5rem;
+    grid-row: 1/2;
+  }
+  .sub_info > p{
+    grid-column: 1 / -1;
+  }
 }
 
 .selected{
   font-weight: bold;
 }
+
+.fa, li:hover{cursor: pointer;}
